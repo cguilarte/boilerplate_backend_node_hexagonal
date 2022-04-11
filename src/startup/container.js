@@ -45,12 +45,21 @@ container.loadModules([`${pathModels}/*.js`], {
   },
 });
 
+// Registro de los Routes
+container.loadModules([`${pathRouter}/*.js`], {
+  resolverOptions: {
+    register: asFunction,
+  },
+});
+
 // Reguistra las tipo asClass/asFunction
-container.loadModules([
-  `${pathRouter}/*.js`,
-  `${pathController}/*.js`,
-  `${pathServices}/*.js`,
-  `${pathRepository}/*.js`,
-]);
+container.loadModules(
+  [`${pathController}/*.js`, `${pathServices}/*.js`, `${pathRepository}/*.js`],
+  {
+    resolverOptions: {
+      register: asClass,
+    },
+  },
+);
 
 module.exports = container;
